@@ -1426,6 +1426,11 @@ validateCssUnit <- function(x) {
 
   pattern <-
     "^(auto|inherit|((\\.\\d+)|(\\d+(\\.\\d+)?))(%|in|cm|mm|em|ex|pt|pc|px|vh|vw|vmin|vmax))$"
+    
+  # Allow for css functions
+  if(grepl('calc', x)) {
+    return(x)
+  }
 
   if (is.character(x) &&
       !grepl(pattern, x)) {
